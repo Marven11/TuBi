@@ -56,9 +56,8 @@ def t00ls_login(u_name, u_pass, q_num, q_ans):
         'questionid': q_num,
         'answer': q_ans
     }
-    response_login = requests.post('https://www.t00ls.cc/login.json', data=login_data, headers=req_headers)
+    response_login = requests.post('https://www.t00ls.com/login.json', data=login_data, headers=req_headers)
     response_login_json = json.loads(response_login.text)
-
     if response_login_json['status'] != 'success':
         return None
     else:
@@ -79,7 +78,7 @@ def t00ls_sign(t00ls_hash, t00ls_cookies):
         'formhash': t00ls_hash,
         'signsubmit': "true"
     }
-    response_sign = requests.post('https://www.t00ls.cc/ajax-sign.json', data=sign_data, cookies=t00ls_cookies,
+    response_sign = requests.post('https://www.t00ls.com/ajax-sign.json', data=sign_data, cookies=t00ls_cookies,
                                   headers=req_headers)
     return json.loads(response_sign.text)
 
@@ -91,6 +90,7 @@ def t00ls_domain(t00ls_hash, t00ls_cookies):
     :param t00ls_cookies: 登录后的 Cookies
     :return: 查询相关的日志信息
     """
+    return "域名查询已禁用"
     content = ''
     # 使用站长之家查询今天注册的域名
     start_time = time.time()
@@ -114,7 +114,7 @@ def t00ls_domain(t00ls_hash, t00ls_cookies):
 
     start_time = time.time()
 
-    query_url = 'https://www.t00ls.cc/domain.html'
+    query_url = 'https://www.t00ls.com/domain.html'
     query_data = f'domain={domain}&formhash={t00ls_hash}&querydomainsubmit=%E6%9F%A5%E8%AF%A2'
     query_status = False
     query_count = 1  # 查询重试次数
@@ -130,7 +130,7 @@ def t00ls_domain(t00ls_hash, t00ls_cookies):
             pass
 
         if domain in response_query.text:
-            response_tb = requests.get('https://www.t00ls.cc/members-tubilog.json', cookies=t00ls_cookies)
+            response_tb = requests.get('https://www.t00ls.com/members-tubilog.json', cookies=t00ls_cookies)
             if domain in response_tb.text:
                 print('查询域名成功 TuBi + 1 \n')
                 content += '查询域名成功 TuBi + 1\n'
