@@ -8,10 +8,10 @@ from email.mime.text import MIMEText
 from email.utils import formataddr
 
 # t00ls 账号配置
-username = '国光'  # 帐号
-password = '***'  # 密码MD5 32位(小写)
-question_num = 7  # 安全提问 参考下面
-question_answer = '***'  # 安全提问答案
+username = os.environ["TUBI_USERNAME"] # 帐号
+password =os.environ["TUBI_PASSWORD"]    # 密码MD5 32位(小写)
+question_num = int(os.environ["TUBI_QUESTION_NUM"])  # 安全提问 参考下面
+question_answer = int(os.environ["TUBI_QUESTION_ANSWER"])  # 安全提问答案
 
 # 0 = 没有安全提问
 # 1 = 母亲的名字
@@ -207,51 +207,12 @@ def main():
             verbose_log = t00ls_domain(response_login[0], response_login[1])
             content += verbose_log
 
-            if notice == 0:
-                try:
-                    dingtalk(content)
-                except Exception:
-                    print('请检查钉钉配置是否正确')
-            elif notice == 1:
-                try:
-                    mail(content)
-                except Exception:
-                    print('请检查邮件配置是否正确')
-            else:
-                try:
-                    dingtalk(content)
-                except Exception:
-                    print('请检查钉钉配置是否正确')
-                try:
-                    mail(content)
-                except Exception:
-                    print('请检查邮件配置是否正确')
         elif response_sign['message'] == 'alreadysign':
             print('已经签到过啦')
             content += '\n已经签到过啦\n'
 
             verbose_log = t00ls_domain(response_login[0], response_login[1])
             content += verbose_log
-
-            if notice == 0:
-                try:
-                    dingtalk(content)
-                except Exception:
-                    print('请检查钉钉配置是否正确')
-            elif notice == 1:
-                try:
-                    mail(content)
-                except Exception:
-                    print('请检查邮件配置是否正确')
-            else:
-                try:
-                    dingtalk(content)
-                except Exception:
-                    print('请检查钉钉配置是否正确')
-                try:
-                    mail(content)
-                except Exception:
-                    print('请检查邮件配置是否正确')
         else:
             print('出现玄学问题了 签到失败')
     else:
