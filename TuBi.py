@@ -2,6 +2,7 @@ import os
 import time
 import json
 import random
+import hashlib
 import smtplib
 import requests
 from bs4 import BeautifulSoup
@@ -10,7 +11,7 @@ from email.utils import formataddr
 
 # t00ls 账号配置
 username = os.environ["TUBI_USERNAME"] # 帐号
-password =os.environ["TUBI_PASSWORD"]    # 密码MD5 32位(小写)
+password = hashlib.md5(os.environ["TUBI_PASSWORD"].encode()).digest().hex()    # 密码MD5 32位(小写)
 question_num = int(os.environ["TUBI_QUESTION_NUM"])  # 安全提问 参考下面
 question_answer =os.environ["TUBI_QUESTION_ANSWER"]  # 安全提问答案
 
