@@ -1,3 +1,4 @@
+import os
 import time
 import json
 import random
@@ -11,7 +12,7 @@ from email.utils import formataddr
 username = os.environ["TUBI_USERNAME"] # 帐号
 password =os.environ["TUBI_PASSWORD"]    # 密码MD5 32位(小写)
 question_num = int(os.environ["TUBI_QUESTION_NUM"])  # 安全提问 参考下面
-question_answer = int(os.environ["TUBI_QUESTION_ANSWER"])  # 安全提问答案
+question_answer =os.environ["TUBI_QUESTION_ANSWER"]  # 安全提问答案
 
 # 0 = 没有安全提问
 # 1 = 母亲的名字
