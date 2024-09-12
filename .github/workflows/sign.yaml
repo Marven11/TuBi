@@ -24,3 +24,8 @@ jobs:
         pip install beautifulsoup4
     - name: py
       run: python TuBi.py
+      env:
+        TUBI_USERNAME: ${{ env.TUBI_USERNAME }}
+        TUBI_PASSWORD: ${{ env.TUBI_PASSWORD }}
+        TUBI_QUESTION_NUM: ${{ env.TUBI_QUESION_NUM }}
+        TUBI_QUESTION_ANSWER: ${{ env.TUBI_QUESTION_ANSWER }}
