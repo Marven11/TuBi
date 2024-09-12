@@ -25,7 +25,7 @@ jobs:
     - name: py
       run: python TuBi.py
       env:
-        TUBI_USERNAME: ${{ env.TUBI_USERNAME }}
-        TUBI_PASSWORD: ${{ env.TUBI_PASSWORD }}
-        TUBI_QUESTION_NUM: ${{ env.TUBI_QUESTION_NUM }}
-        TUBI_QUESTION_ANSWER: ${{ env.TUBI_QUESTION_ANSWER }}
+        TUBI_USERNAME: ${{ secrets.TUBI_USERNAME }}
+        TUBI_PASSWORD: ${{ secrets.TUBI_PASSWORD }}
+        TUBI_QUESTION_NUM: ${{ secrets.TUBI_QUESTION_NUM }}
+        TUBI_QUESTION_ANSWER: ${{ secrets.TUBI_QUESTION_ANSWER }}
